@@ -57,6 +57,16 @@ router.route("/cars/:id").delete((req, res) => {
       })
       .catch((error) => res.status(400).json({ error: "Failed to update car." }));
   });
+
+  router.route("/carEdit/:id").put((req, res) => {
+    const carId = req.params.id;
+    const updatedCar = req.body;
+  
+    Car.findByIdAndUpdate(carId, updatedCar)
+      .then(() => res.json({ message: "Car updated successfully." }))
+      .catch((error) => res.status(400).json({ error: "Failed to update car." }));
+  });
+  
   
 
 module.exports = router;

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css"
+import Edit from "./Edit.jsx";
+
 
 function Cars() {
     const [cars, setCars] = useState([{
@@ -12,6 +14,13 @@ function Cars() {
         videoLink: '',
         active: ''
     }])
+
+    const [selectedCar, setSelectedCar] = useState(null);
+
+    const handleEdit = (car) => {
+        setSelectedCar(car);
+    };
+
 
     useEffect(() => {
         fetch("/cars").then(res => {
@@ -62,42 +71,63 @@ function Cars() {
 
 
 
-    return <div className="container">
-        <h1>租车展示</h1>
-        {cars?.map(car =>
-            <div className="boxes"  key={car._id}>
+    return (
+        <div className="container">
+            <h1>e租车</h1>
+            {selectedCar ? (
+                <Edit car={selectedCar} onClose={() => setSelectedCar(null)} />
+            ) : (
+                <div>
+                    <table className="table">
+                        <thead>
+                            <tr className="tr">
+                                <th></th>
+                                <th>标题</th>
+                                <th>每天 $</th>
+                                <th>每周 $</th>
+                                <th>每月 $</th>
+                                {/* <th>视频链接</th> */}
+                                <th></th>
+                                <th>开/关</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cars?.map((car) => (
+                                <tr className="boxes" key={car._id}>
 
-                <div className="col-sm-6">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">{car.title}</h5>
-                            <p className="card-text">{car.content}</p>
-                            <div>每天：${car.day}</div>
-                            <div>每周：${car.week}</div>
-                            <div>每月：${car.month}</div>
-                            <div>视频链接：{car.videoLink}</div>
-                            <div>检查：{car.active}</div>
-                            <div className="btn btn-primary">Go somewhere</div>
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => handleDelete(car._id)}
-                            >删除</button>
-                            <label className="switch">
-                                <input type="checkbox" checked={car.active}
-                                    onChange={(event) => handleCheckboxChange(event, car._id)}
-                                />
-                                <span className="slider"></span>
-                            </label>
+                                    <td className="btn btn-danger"
+                                        onClick={() => handleDelete(car._id)}><span className="close">&times;</span>
+                                    </td>
+                                    <td className="card-title">{car.title}</td>
+                                    <td>${car.day}</td>
+                                    <td>${car.week}</td>
+                                    <td>${car.month}</td>
+                                    {/* <td>{car.videoLink}</td> */}
+                                    <td><button
+                                        className="btn btn-primary"
+                                        onClick={() => handleEdit(car)}
+                                    >
+                                        Edit
+                                    </button></td>
 
+                                    <td><label className="switch">
+                                        <input
+                                            type="checkbox"
+                                            checked={car.active}
+                                            onChange={(event) => handleCheckboxChange(event, car._id)}
+                                        />
+                                        <span className="slider"></span>
+                                    </label>
+                                    </td>
 
-                        </div>
-                    </div>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-
-        )}
-
-    </div>
+            )}
+        </div>
+    );
 }
 
 export default Cars;

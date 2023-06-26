@@ -38,7 +38,7 @@ function Cars() {
 
   return (
     <div className="container">
-      <h1>租车展示</h1>
+      <h1>e租车</h1>
       {currentCar && (
         <div key={currentCar._id}>
           <h1>{currentCar.title}</h1>
@@ -50,10 +50,10 @@ function Cars() {
           ) : (
             <div>链接不正确</div>
           )}
-          <div className="row">
-            <div>每天：${currentCar.day}</div>
-            <div>每周：${currentCar.week}</div>
-            <div>每月：${currentCar.month}</div>
+          <div className="row1">
+            <div className="each">每天：${currentCar.day}</div>
+            <div className="each">每周：${currentCar.week}</div>
+            <div className="each">每月：${currentCar.month}</div>
           </div>
         </div>
       )}
