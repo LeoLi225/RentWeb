@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 function Create() {
+
+    const uniqueId = uuidv4();
+
     const [input, setInput] = useState({
+        _id: uniqueId,
         title: '',
         content: '',
         day: '',
         week: '',
-        month: ''
-
+        month: '',
+        videoLink: '',
+        active: true
     })
 
     function handleChange(event) {
@@ -26,15 +32,25 @@ function Create() {
         event.preventDefault();
 
         const newCar = {
+            _id: input._id,
             title: input.title,
             content: input.content,
             day: input.day,
             week: input.week,
-            month: input.month
+            month: input.month,
+            videoLink: input.videoLink,
+            active: input.active
         }
-
-        axios.post('http://localhost:3001/create', newCar)
+        try {
+            axios.post('http://localhost:3001/create', newCar)
+            alert('成功添加');
+            window.location.reload();
+        } catch (error) {
+            alert('出现错误');
+        }
+        
     }
+
 
 
     return <div className="container">
@@ -67,11 +83,16 @@ function Create() {
                 <input type="text" onChange={handleChange} name="month" value={input.month} className="form-control" placeholder="$" />
             </div>
             <br />
+            <div className="col-3">
+                <div>视频链接</div>
+                <input type="text" onChange={handleChange} name="videoLink" value={input.videoLink} className="form-control" placeholder="link" />
+            </div>
+
+            <br />
+
             <button onClick={handleClick} className="btn btn-lg btn-info">Add Note</button>
 
         </form>
-
-
 
     </div>
 }
