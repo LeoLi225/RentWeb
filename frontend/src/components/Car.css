@@ -2,11 +2,25 @@ body {
     background-color: rgb(100, 123, 152);
 }
 
+.grid-all {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 8% 92%;
+    height: 100vh;
+}
+
+.grid-all div:first-child {
+    grid-row: span 1;
+}
+
+.grid-all div:nth-child(2) {
+    grid-row: span 1;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 100%;
-    height: 100vh;
 }
 
 .grid-container div:first-child {
@@ -27,7 +41,7 @@ body {
     grid-template-columns: 100%;
 }
 
-.L1{
+.L1 {
     background-color: #be7777;
     grid-row: span 1;
 }
@@ -45,6 +59,25 @@ body {
 .L4 {
     background-color: #77a6be;
     grid-row: span 1;
+}
+
+.grid-itemM {
+    display: grid;
+    grid-template-rows: 10% 60% 30%;
+    grid-template-columns: 100%;
+    position: relative;
+}
+
+.grid-itemM div:first-child {
+    grid-column: span 1;
+}
+
+.grid-itemM div:nth-child(2) {
+    grid-column: span 1;
+}
+
+.grid-itemM div:nth-child(3) {
+    grid-column: span 1;
 }
 
 .grid-itemR {
@@ -67,3 +100,31 @@ body {
     background-color: #315334;
     grid-row: span 1;
 }
+
+.blinking-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #ffd700 0%, #feee5e 50%, #ffd700 100%);
+    animation: blink 1s ease-in-out infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% {
+      background: radial-gradient(circle at center, #ffd700 0%, #feee5e 50%, #ffd700 100%);
+    }
+    50.1%, 100% {
+      background: radial-gradient(circle at center, #ffd700 0%, #ffd700 50%, #feee5e 100%);
+    }
+  }
+  
+  
+  
+  
+
+ 
+  

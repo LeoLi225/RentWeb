@@ -51,7 +51,12 @@ function Cars() {
 
   return (
     <>
-        {clouds.map((cloud) => (
+
+      {clouds.map((cloud) => (
+        <div className="grid-all">
+          <div>
+            <h2>MotorOne Auto Sales</h2>
+          </div>
           <div className="grid-container">
             <div className="grid-itemL" key={cloud._id}>
               <div className="L1">
@@ -97,9 +102,12 @@ function Cars() {
               </div>
             </div>
 
-            <div className="grid-itemM">
+            <div className="grid-itemM" >
               <div className="M1">{cloud.M1} {cloud.M2} {cloud.M3}</div>
-              <div className="M2"></div>
+              <div className="M2" style={{ backgroundImage: `url(/vancouver.webp)`, backgroundSize: '100% auto', backgroundRepeat: 'no-repeat' }}>
+                <div className="blinking-dot"></div>
+                
+              </div>
               <div className="M3"></div>
             </div>
 
@@ -109,7 +117,8 @@ function Cars() {
               <div className="R3"> a</div>
             </div>
           </div>
-        ))}
+        </div>
+      ))}
     </>
   );
 

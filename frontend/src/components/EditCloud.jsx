@@ -28,6 +28,9 @@ function EditCloud({ cloud, onClose }) {
             .then((res) => {
                 if (res.ok) {
                     console.log("数据已更新");
+                    alert("数据已更新");
+                    onClose();
+                    window.location.reload();
                 } else {
                     console.error("更新失败");
                 }

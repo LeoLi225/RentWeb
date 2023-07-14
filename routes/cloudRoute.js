@@ -101,6 +101,31 @@ routerCloud.route("/sells").post((req, res) => {
     newSell.save();
 })
 
+routerCloud.route("/sells").get((req, res) => {
+    Sell.find()
+        .then(foundSells => res.json(foundSells))
+        .catch((error) => res.status(400).json({ error: "Failed to fetch sells." }));
+});
+
+// 删除出售记录
+routerCloud.route("/sell/:id").delete((req, res) => {
+    const sellId = req.params.id;
+
+    Sell.findByIdAndDelete(sellId)
+        .then(() => res.json({ message: "Sell deleted successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to delete sell." }));
+});
+
+// 更新出售记录
+routerCloud.route("/sellEdit/:id").put((req, res) => {
+    const sellId = req.params.id;
+    const updatedSell = req.body;
+
+    Sell.findByIdAndUpdate(sellId, updatedSell)
+        .then(() => res.json({ message: "Sell updated successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to update sell." }));
+});
+
 
 
 module.exports = routerCloud;
