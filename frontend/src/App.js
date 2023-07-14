@@ -9,17 +9,19 @@ import Home from "./components/Home";
 function App() {
   return (
     <Router>
-      <Navbar />
+      
 
       <Route path="/" exact>
+        <Navbar />
         <Home />
       </Route>
 
-      <Route path="/cars">
+      <Route path="/cloud">
         <Notes />
       </Route>
 
       <Route path="/create">
+      <Navbar />
         <Create />
       </Route>
 

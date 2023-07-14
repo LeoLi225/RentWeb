@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 
-function Edit({ car, onClose }) {
-    const [editedCar, setEditedCar] = useState(car);
+function EditCloud({ cloud, onClose }) {
+    const [editedCloud, setEditedCloud] = useState(cloud);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setEditedCar((prevCar) => ({ ...prevCar, [name]: value }));
+        setEditedCloud((prevCloud) => ({ ...prevCloud, [name]: value }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        
-
-        const updatedCar = {
-            ...editedCar,
+        const updatedCloud = {
+            ...editedCloud,
             // Additional properties if needed
         };
 
-        console.log(updatedCar);
+        console.log(updatedCloud);
 
-        fetch(`/carEdit/${car._id}`, {
+        fetch(`/cloudEdit/${cloud._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedCar),
+            body: JSON.stringify(updatedCloud),
         })
             .then((res) => {
                 if (res.ok) {
@@ -43,87 +41,243 @@ function Edit({ car, onClose }) {
 
     return (
         <div>
-            <h2>Edit Car</h2>
+            <h2>Edit Cloud</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="title" className="form-group">车名字</label>
+                    <label htmlFor="title" className="form-group">会员</label>
                     <input
                         type="text"
-                        name="title"
+                        name="membership"
                         autoComplete="off"
                         className="form-control"
-                        value={editedCar.title}
+                        value={editedCloud.membership}
                         onChange={handleChange}
                     />
                 </div>
                 <br />
                 <div className="form-group">
-                    <label htmlFor="title" className="form-group">车辆信息</label>
+                    <label htmlFor="title" className="form-group">VIP</label>
                     <input
                         type="text"
-                        name="content"
+                        name="vip"
                         autoComplete="off"
                         className="form-control"
-                        value={editedCar.content}
+                        value={editedCloud.vip}
                         onChange={handleChange}
                     />
                 </div>
                 <br />
-                <div className="col-3">
-                    <label htmlFor="title" className="form-group">一天</label>
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">SVIP</label>
                     <input
                         type="text"
-                        name="day"
+                        name="svip"
                         autoComplete="off"
                         className="form-control"
-                        value={editedCar.day}
+                        value={editedCloud.svip}
                         onChange={handleChange}
                     />
                 </div>
                 <br />
-                <div className="col-3">
-                    <label htmlFor="title" className="form-group">一周</label>
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">SSVIP</label>
                     <input
                         type="text"
-                        name="week"
+                        name="ssvip"
                         autoComplete="off"
                         className="form-control"
-                        value={editedCar.week}
+                        value={editedCloud.ssvip}
                         onChange={handleChange}
                     />
                 </div>
                 <br />
-                <div className="col-3">
-                    <label htmlFor="title" className="form-group">一月</label>
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">S等级1名称</label>
                     <input
                         type="text"
-                        name="month"
+                        name="SRank1_name"
                         autoComplete="off"
                         className="form-control"
-                        value={editedCar.month}
+                        value={editedCloud.SRank1_name}
                         onChange={handleChange}
                     />
                 </div>
                 <br />
-                <div className="col-10">
-                    <label htmlFor="title" className="form-group">视频链接</label>
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">S等级2名称</label>
                     <input
                         type="text"
-                        name="videoLink"
+                        name="SRank2_name"
                         autoComplete="off"
                         className="form-control"
-                        value={editedCar.videoLink}
+                        value={editedCloud.SRank2_name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">S等级3名称</label>
+                    <input
+                        type="text"
+                        name="SRank3_name"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.SRank3_name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">S等级1头像</label>
+                    <input
+                        type="text"
+                        name="SRank1_avatar"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.SRank1_avatar}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">S等级2头像</label>
+                    <input
+                        type="text"
+                        name="SRank2_avatar"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.SRank2_avatar}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">S等级3头像</label>
+                    <input
+                        type="text"
+                        name="SRank3_avatar"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.SRank3_avatar}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M等级1名称</label>
+                    <input
+                        type="text"
+                        name="MRank1_name"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.MRank1_name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M等级2名称</label>
+                    <input
+                        type="text"
+                        name="MRank2_name"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.MRank2_name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M等级3名称</label>
+                    <input
+                        type="text"
+                        name="MRank3_name"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.MRank3_name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M等级1头像</label>
+                    <input
+                        type="text"
+                        name="MRank1_avatar"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.MRank1_avatar}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M等级2头像</label>
+                    <input
+                        type="text"
+                        name="MRank2_avatar"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.MRank2_avatar}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M等级3头像</label>
+                    <input
+                        type="text"
+                        name="MRank3_avatar"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.MRank3_avatar}
                         onChange={handleChange}
                     />
                 </div>
                 <br />
 
-                <button type="submit">Save</button>
-                <button onClick={onClose}>Cancel</button>
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M1</label>
+                    <input
+                        type="text"
+                        name="M1"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.M1}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M2</label>
+                    <input
+                        type="text"
+                        name="M2"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.M2}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">M3</label>
+                    <input
+                        type="text"
+                        name="M3"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.M3}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <button type="submit">保存</button>
+                <button onClick={onClose}>取消</button>
             </form>
-
         </div>
     );
 }
 
-export default Edit;
+export default EditCloud;

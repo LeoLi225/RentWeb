@@ -1,75 +1,120 @@
 import React, { useEffect, useState } from "react";
-import YouTube from "react-youtube";
+import { Doughnut } from "react-chartjs-2";
 import "./Car.css";
 
 function Cars() {
-  const [cars, setCars] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [previousIndex, setPreviousIndex] = useState(null);
+  const [clouds, setClouds] = useState([]);
 
   useEffect(() => {
-    fetch("/cars")
+    fetch("/clouds")
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
       })
       .then((jsonRes) => {
-        const activeCars = jsonRes.filter((car) => car.active); // 过滤active为true的车辆
-        setCars(activeCars);
+        setClouds(jsonRes);
+      })
+      .catch((error) => {
+        console.error("获取云服务失败", error);
       });
   }, []);
 
-  const nextCar = () => {
-    setPreviousIndex(currentIndex);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cars.length);
+  const vipStrings = clouds.map((cloud) => cloud.vip).filter((vip) => typeof vip === 'string');
+  const uniqueVipStrings = [...new Set(vipStrings)];
+
+  const svipStrings = clouds.map((cloud) => cloud.svip).filter((svip) => typeof svip === 'string');
+  const uniqueSVipStrings = [...new Set(svipStrings)];
+
+
+  const ssvipStrings = clouds.map((cloud) => cloud.ssvip).filter((ssvip) => typeof ssvip === 'string');
+  const uniquesSVipStrings = [...new Set(ssvipStrings)];
+
+  const data = {
+    labels: ["VIP", "SVIP", "SSVIP"],
+    datasets: [
+      {
+        label: "VIP Levels",
+        data: [uniqueVipStrings, uniqueSVipStrings, uniquesSVipStrings],
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+      },
+    ],
   };
 
-  const previousCar = () => {
-    let newIndex = currentIndex - 1;
-    if (newIndex < 0) {
-      newIndex = cars.length - 1;
-    }
-    setPreviousIndex(currentIndex);
-    setCurrentIndex(newIndex);
+  const options = {
+    plugins: {
+      legend: {
+        position: "right",
+      },
+    },
   };
-
-  const currentCar = cars[currentIndex];
 
   return (
-    <div className="container">
-      <h1>e租车</h1>
-      {currentCar && (
-        <div key={currentCar._id}>
-          <h1>{currentCar.title}</h1>
-          <h4>{currentCar.content}</h4>
-          {currentCar.videoLink.includes("youtube.com") ? (
-            <div>
-              <YouTube videoId={getYouTubeVideoId(currentCar.videoLink)} />
-            </div>
-          ) : (
-            <div>链接不正确</div>
-          )}
-          <div className="row1">
-            <div className="each">每天：${currentCar.day}</div>
-            <div className="each">每周：${currentCar.week}</div>
-            <div className="each">每月：${currentCar.month}</div>
-          </div>
-        </div>
-      )}
-      {!currentCar && <div>没有可展示的车辆</div>}
-      <button onClick={previousCar} disabled={previousIndex === null}>
-        上一辆车
-      </button>
-      <button onClick={nextCar}>下一辆车</button>
-    </div>
-  );
-}
+    <>
+        {clouds.map((cloud) => (
+          <div className="grid-container">
+            <div className="grid-itemL" key={cloud._id}>
+              <div className="L1">
+                <h2>会员: {cloud.membership}</h2>
+              </div>
+              <div className="L2">
+                <Doughnut data={data} options={options} />
+              </div>
+              <div className="L3">
+                <div>
+                  <h4>收车排行榜</h4>
+                </div>
+                <div>
+                  <h4>排名  头像  姓名</h4>
+                </div>
+                <div>
+                  <p>1  {cloud.SRank1_avatar}   {cloud.SRank1_name}</p>
+                </div>
+                <div>
+                  <p>2  {cloud.SRank2_avatar}   {cloud.SRank2_name}</p>
+                </div>
+                <div>
+                  <p>3  {cloud.SRank3_avatar}   {cloud.SRank3_name}</p>
+                </div>
+              </div>
 
-// 从YouTube链接中提取视频ID
-function getYouTubeVideoId(url) {
-  const videoIdMatch = url.match(/youtube\.com.*(?:\/|v=)([^&$]+)/);
-  return videoIdMatch && videoIdMatch[1];
+              <div className="L4">
+                <div>
+                  <h4>卖车排行榜</h4>
+                </div>
+                <div>
+                  <h4>排名  头像  姓名</h4>
+                </div>
+                <div>
+                  <p>1  {cloud.MRank1_avatar}   {cloud.MRank1_name}</p>
+                </div>
+                <div>
+                  <p>2  {cloud.MRank2_avatar}   {cloud.MRank2_name}</p>
+                </div>
+                <div>
+                  <p>3  {cloud.MRank3_avatar}   {cloud.MRank3_name}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid-itemM">
+              <div className="M1">{cloud.M1} {cloud.M2} {cloud.M3}</div>
+              <div className="M2"></div>
+              <div className="M3"></div>
+            </div>
+
+            <div className="grid-itemR">
+              <div className="R1"> a</div>
+              <div className="R2"> a</div>
+              <div className="R3"> a</div>
+            </div>
+          </div>
+        ))}
+    </>
+  );
+
 }
 
 export default Cars;
+
+

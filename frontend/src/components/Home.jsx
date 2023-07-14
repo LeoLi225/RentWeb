@@ -1,125 +1,83 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css"
+import axios from 'axios';
 import Edit from "./Edit.jsx";
 
-
-function Cars() {
-    const [cars, setCars] = useState([{
-        _id: '',
-        title: '',
-        content: '',
-        day: '',
-        week: '',
-        month: '',
-        videoLink: '',
-        active: ''
-    }])
-
-    const [selectedCar, setSelectedCar] = useState(null);
-
-    const handleEdit = (car) => {
-        setSelectedCar(car);
-    };
-
+function Clouds() {
+    const [clouds, setClouds] = useState([]);
+    const [selectedCloud, setSelectedCloud] = useState(null);
 
     useEffect(() => {
-        fetch("/cars").then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-        }).then(jsonRes => setCars(jsonRes));
-    })
-
-    const handleDelete = (carToDelete) => {
-
-        fetch(`/cars/${carToDelete}`, {
-            method: 'DELETE',
-        })
-            .then((res) => {
-                if (res.ok) {
-                    window.location.reload();
-                } else {
-                    console.error('删除失败');
-                }
+        axios.get('/clouds')
+            .then(response => {
+                setClouds(response.data);
             })
-            .catch((error) => {
-                console.error('删除失败', error);
+            .catch(error => {
+                console.error('获取云服务失败', error);
+            });
+    }, []);
+
+    const handleEdit = (cloud) => {
+        setSelectedCloud(cloud);
+    };
+
+    const handleDelete = (cloudId) => {
+        axios.delete(`/cloud/${cloudId}`)
+            .then(() => {
+                console.log('云服务删除成功');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('云服务删除失败', error);
             });
     };
 
-    const handleCheckboxChange = (event, carId) => {
-        const newActive = event.target.checked;
+    // const handleCheckboxChange = (event, cloudId) => {
+    //     const newActive = event.target.checked;
 
-        fetch(`/cars/${carId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ active: newActive }),
-        })
-            .then((res) => {
-                if (res.ok) {
-                    console.log("状态已更新");
-                } else {
-                    console.error("更新失败");
-                }
-            })
-            .catch((error) => {
-                console.error("更新失败", error);
-            });
-    };
-
-
+    //     axios.put(`/cloudEdit/${cloudId}`, { active: newActive })
+    //         .then(() => {
+    //             console.log('云服务状态已更新');
+    //         })
+    //         .catch(error => {
+    //             console.error('云服务状态更新失败', error);
+    //         });
+    // };
 
     return (
         <div className="container">
-            <h1>e租车</h1>
-            {selectedCar ? (
-                <Edit car={selectedCar} onClose={() => setSelectedCar(null)} />
+            <h1>云服务</h1>
+            {selectedCloud ? (
+                <Edit cloud={selectedCloud} onClose={() => setSelectedCloud(null)} />
             ) : (
                 <div>
                     <table className="table">
                         <thead>
                             <tr className="tr">
-                                <th></th>
-                                <th>标题</th>
-                                <th>每天 $</th>
-                                <th>每周 $</th>
-                                <th>每月 $</th>
-                                {/* <th>视频链接</th> */}
-                                <th></th>
-                                <th>开/关</th>
+                                <br/>
+                                <th>会员</th>
+                                <th>VIP</th>
+                                <th>SVIP</th>
+                                <th>SSVIP</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {cars?.map((car) => (
-                                <tr className="boxes" key={car._id}>
-
-                                    <td className="btn btn-danger"
-                                        onClick={() => handleDelete(car._id)}><span className="close">&times;</span>
+                            {clouds.map((cloud) => (
+                                <tr className="boxes" key={cloud._id}>
+                                    <td className="btn btn-danger" onClick={() => handleDelete(cloud._id)}>
+                                        <span className="close">&times;</span>
                                     </td>
-                                    <td className="card-title">{car.title}</td>
-                                    <td>${car.day}</td>
-                                    <td>${car.week}</td>
-                                    <td>${car.month}</td>
-                                    {/* <td>{car.videoLink}</td> */}
-                                    <td><button
-                                        className="btn btn-primary"
-                                        onClick={() => handleEdit(car)}
-                                    >
-                                        Edit
-                                    </button></td>
-
-                                    <td><label className="switch">
-                                        <input
-                                            type="checkbox"
-                                            checked={car.active}
-                                            onChange={(event) => handleCheckboxChange(event, car._id)}
-                                        />
-                                        <span className="slider"></span>
-                                    </label>
+                                    <td className="card-title">{cloud.membership}</td>
+                                    <td>{cloud.vip}</td>
+                                    <td>{cloud.svip}</td>
+                                    <td>{cloud.ssvip}</td>
+                                    <td>
+                                        <button
+                                            className="btn btn-primary"
+                                            onClick={() => handleEdit(cloud)}
+                                        >
+                                            编辑
+                                        </button>
                                     </td>
-
                                 </tr>
                             ))}
                         </tbody>
@@ -130,4 +88,4 @@ function Cars() {
     );
 }
 
-export default Cars;
+export default Clouds;

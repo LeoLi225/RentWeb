@@ -1,6 +1,69 @@
-.row1 {
-    display: flex;
-    flex-direction: row;
-    margin: 15px;
+body {
+    background-color: rgb(100, 123, 152);
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 100%;
+    height: 100vh;
+}
+
+.grid-container div:first-child {
+    grid-column: span 1;
+}
+
+.grid-container div:nth-child(2) {
+    grid-column: span 1;
+}
+
+.grid-container div:nth-child(3) {
+    grid-column: span 1;
+}
+
+.grid-itemL {
+    display: grid;
+    grid-template-rows: 10% 30% 30% 30%;
+    grid-template-columns: 100%;
+}
+
+.L1{
+    background-color: #be7777;
+    grid-row: span 1;
+}
+
+.L2 {
+    background-color: #a677be;
+    grid-row: span 1;
+}
+
+.L3 {
+    background-color: #77be7c;
+    grid-row: span 1;
+}
+
+.L4 {
+    background-color: #77a6be;
+    grid-row: span 1;
+}
+
+.grid-itemR {
+    display: grid;
+    grid-template-rows: 33.3% 33.3% 33.4%;
+    grid-template-columns: 100%;
+}
+
+.grid-itemR div:first-child {
+    background-color: #725050;
+    grid-row: span 1;
+}
+
+.grid-itemR div:nth-child(2) {
+    background-color: #52385f;
+    grid-row: span 1;
+}
+
+.grid-itemR div:nth-child(3) {
+    background-color: #315334;
+    grid-row: span 1;
+}
