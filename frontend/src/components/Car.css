@@ -1,5 +1,6 @@
 body {
-    background-color: rgb(100, 123, 152);
+    background-color: #020c1b;
+    color: white;
 }
 
 .grid-all {
@@ -7,6 +8,19 @@ body {
     grid-template-columns: 100%;
     grid-template-rows: 8% 92%;
     height: 100vh;
+}
+
+.grid-top {
+    background-color: #1a202c;
+
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    letter-spacing: 8px;
+    font-size: 25px;
+    margin-left: 2%;
 }
 
 .grid-all div:first-child {
@@ -21,6 +35,7 @@ body {
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 100%;
+    /* background-color: rgb(2, 21, 50); */
 }
 
 .grid-container div:first-child {
@@ -42,22 +57,58 @@ body {
 }
 
 .L1 {
-    background-color: #be7777;
+    /* background-color: #a855f7; */
     grid-row: span 1;
+    display: flex;
+    align-items: center;
+    padding-bottom: 0px;
+    position: relative;
 }
 
+.L1 div:nth-child(1) {
+    margin-left: 10%;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.L1 div:nth-child(2) {
+    margin-right: 1px;
+    font-size: 13px;
+    margin-left: auto;
+    margin-top: 15px;
+}
+
+.L1 div:nth-child(3) {
+    font-size: 30px;
+    color: rgb(40, 116, 215);
+    margin-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.L1::after {
+    margin-top: 0;
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 10%;
+    right: 5%;
+    border-top: 1px solid rgb(94, 94, 94);
+}
+
+
 .L2 {
-    background-color: #a677be;
+    /* background-color: #a677be; */
     grid-row: span 1;
 }
 
 .L3 {
-    background-color: #77be7c;
+    /* background-color: #77be7c; */
     grid-row: span 1;
 }
 
 .L4 {
-    background-color: #77a6be;
+    /* background-color: #77a6be; */
     grid-row: span 1;
 }
 
@@ -86,18 +137,31 @@ body {
     grid-template-columns: 100%;
 }
 
-.grid-itemR div:first-child {
-    background-color: #725050;
+.R1 {
+    /* background-color: #725050; */
     grid-row: span 1;
 }
 
+.card-container {
+    overflow: hidden;
+    height: 200px;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: column;
+    transition: transform 1s;
+}
+
+
+
 .grid-itemR div:nth-child(2) {
-    background-color: #52385f;
+    /* background-color: #52385f; */
     grid-row: span 1;
 }
 
 .grid-itemR div:nth-child(3) {
-    background-color: #315334;
+    /* background-color: #315334; */
     grid-row: span 1;
 }
 
@@ -111,20 +175,17 @@ body {
     border-radius: 50%;
     background: radial-gradient(circle at center, #ffd700 0%, #feee5e 50%, #ffd700 100%);
     animation: blink 1s ease-in-out infinite;
-  }
-  
-  @keyframes blink {
-    0%, 50% {
-      background: radial-gradient(circle at center, #ffd700 0%, #feee5e 50%, #ffd700 100%);
-    }
-    50.1%, 100% {
-      background: radial-gradient(circle at center, #ffd700 0%, #ffd700 50%, #feee5e 100%);
-    }
-  }
-  
-  
-  
-  
+}
 
- 
-  
+@keyframes blink {
+
+    0%,
+    50% {
+        background: radial-gradient(circle at center, #ffd700 0%, #feee5e 50%, #ffd700 100%);
+    }
+
+    50.1%,
+    100% {
+        background: radial-gradient(circle at center, #ffd700 0%, #ffd700 50%, #feee5e 100%);
+    }
+}

@@ -1,7 +1,9 @@
 const express = require("express");
 const routerCloud = express.Router();
 const Cloud = require("../models/cloudModel");
-const Sell = require("../models/sellModel");
+const Sell = require("../models/customerModel");
+const Newcome = require("../models/newcomeModel");
+const Message = require("../models/messageModel");
 
 routerCloud.route("/create").post((req, res) => {
     const _id = req.body._id;
@@ -79,11 +81,9 @@ routerCloud.route("/sells").post((req, res) => {
     const year = req.body.year;
     const make = req.body.make;
     const model = req.body.model;
-    const km = req.body.km;
     const color = req.body.color;
-    const price = req.body.price;
     const name = req.body.name;
-    const place = req.body.place;
+    const phone = req.body.phone;
 
 
     const newSell = new Sell({
@@ -91,11 +91,9 @@ routerCloud.route("/sells").post((req, res) => {
         year,
         make,
         model,
-        km,
         color,
-        price,
         name,
-        place
+        phone
     });
 
     newSell.save();
@@ -126,6 +124,93 @@ routerCloud.route("/sellEdit/:id").put((req, res) => {
         .catch((error) => res.status(400).json({ error: "Failed to update sell." }));
 });
 
+routerCloud.route("/newcome").post((req, res) => {
+    const _id = req.body._id;
+    const year = req.body.year;
+    const make = req.body.make;
+    const model = req.body.model;
+    const color = req.body.color;
+    const km = req.body.km;
+    const place = req.body.place;
+
+    const newNewcome = new Newcome({
+        _id,
+        year,
+        make,
+        model,
+        color,
+        km,
+        place
+    });
+
+    newNewcome.save()
+        .then(() => res.json({ message: "Newcome created successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to create newcome." }));
+});
+
+routerCloud.route("/newcomes").get((req, res) => {
+    Newcome.find()
+        .then(foundNewcomes => res.json(foundNewcomes))
+        .catch((error) => res.status(400).json({ error: "Failed to fetch newcomes." }));
+});
+
+routerCloud.route("/newcome/:id").delete((req, res) => {
+    const newcomeId = req.params.id;
+
+    Newcome.findByIdAndDelete(newcomeId)
+        .then(() => res.json({ message: "Newcome deleted successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to delete newcome." }));
+});
+
+routerCloud.route("/newcomeEdit/:id").put((req, res) => {
+    const newcomeId = req.params.id;
+    const updatedNewcome = req.body;
+
+    Newcome.findByIdAndUpdate(newcomeId, updatedNewcome)
+        .then(() => res.json({ message: "Newcome updated successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to update newcome." }));
+});
+
+routerCloud.route("/message").post((req, res) => {
+    const _id = req.body._id;
+    const avatarUrl = req.body.avatarUrl;
+    const name = req.body.name;
+    const messagehere = req.body.messagehere;
+
+    const newMessage = new Message({
+        _id,
+        avatarUrl,
+        name,
+        messagehere,
+    });
+
+    newMessage.save()
+        .then(() => res.json({ message: "Message created successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to create message." }));
+});
+
+routerCloud.route("/messages").get((req, res) => {
+    Message.find()
+        .then(foundMessages => res.json(foundMessages))
+        .catch((error) => res.status(400).json({ error: "Failed to fetch messages." }));
+});
+
+routerCloud.route("/message/:id").delete((req, res) => {
+    const messageId = req.params.id;
+
+    Message.findByIdAndDelete(messageId)
+        .then(() => res.json({ message: "Message deleted successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to delete message." }));
+});
+
+routerCloud.route("/messageEdit/:id").put((req, res) => {
+    const messageId = req.params.id;
+    const updatedMessage = req.body;
+
+    Message.findByIdAndUpdate(messageId, updatedMessage)
+        .then(() => res.json({ message: "Message updated successfully." }))
+        .catch((error) => res.status(400).json({ error: "Failed to update message." }));
+});
 
 
 module.exports = routerCloud;

@@ -83,18 +83,6 @@ function SellEdit({ sell, onClose }) {
                 </div>
                 <br />
                 <div className="form-group">
-                    <label htmlFor="km">KM</label>
-                    <input
-                        type="text"
-                        name="km"
-                        autoComplete="off"
-                        className="form-control"
-                        value={editedSell.km}
-                        onChange={handleChange}
-                    />
-                </div>
-                <br />
-                <div className="form-group">
                     <label htmlFor="color">Color</label>
                     <input
                         type="text"
@@ -102,18 +90,6 @@ function SellEdit({ sell, onClose }) {
                         autoComplete="off"
                         className="form-control"
                         value={editedSell.color}
-                        onChange={handleChange}
-                    />
-                </div>
-                <br />
-                <div className="form-group">
-                    <label htmlFor="price">Price</label>
-                    <input
-                        type="text"
-                        name="price"
-                        autoComplete="off"
-                        className="form-control"
-                        value={editedSell.price}
                         onChange={handleChange}
                     />
                 </div>
@@ -131,13 +107,13 @@ function SellEdit({ sell, onClose }) {
                 </div>
                 <br />
                 <div className="form-group">
-                    <label htmlFor="place">Place</label>
+                    <label htmlFor="phone">Phone</label>
                     <input
                         type="text"
-                        name="place"
+                        name="phone"
                         autoComplete="off"
                         className="form-control"
-                        value={editedSell.place}
+                        value={editedSell.phone}
                         onChange={handleChange}
                     />
                 </div>
