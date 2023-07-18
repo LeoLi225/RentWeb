@@ -26,6 +26,7 @@ routerCloud.route("/create").post((req, res) => {
     const M1 = req.body.M1;
     const M2 = req.body.M2;
     const M3 = req.body.M3;
+    const Satisfaction = req.body.Satisfaction;
 
     const newCloud = new Cloud({
         _id,
@@ -47,7 +48,8 @@ routerCloud.route("/create").post((req, res) => {
         MRank3_avatar,
         M1,
         M2,
-        M3
+        M3,
+        Satisfaction,
     });
 
     newCloud.save();

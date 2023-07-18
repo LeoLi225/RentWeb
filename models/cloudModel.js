@@ -20,7 +20,8 @@ const cloudSchema = {
     MRank3_avatar: String,
     M1: String,
     M2: String,
-    M3: String
+    M3: String,
+    Satisfaction: String,
 }
 
 const Cloud = mongoose.model("cloud", cloudSchema);

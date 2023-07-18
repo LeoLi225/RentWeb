@@ -27,6 +27,7 @@ function Create() {
         M1: '',
         M2: '',
         M3: '',
+        Satisfaction: ''
     });
 
     const [sellInput, setSellInput] = useState({
@@ -118,6 +119,7 @@ function Create() {
             M1: input.M1,
             M2: input.M2,
             M3: input.M3,
+            Satisfaction: input.Satisfaction,
         };
 
         try {
@@ -221,80 +223,103 @@ function Create() {
                     </div>
                 </div>
                 <br />
-                <div className="form-group col-md-4">
-                    <div>S等级1名称</div>
-                    <input onChange={handleChange} name="SRank1_name" value={input.SRank1_name} autoComplete="off" className="form-control" placeholder="S等级1名称" />
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <div>S等级1名称</div>
+                        <input onChange={handleChange} name="SRank1_name" value={input.SRank1_name} autoComplete="off" className="form-control" placeholder="S等级1名称" />
+                    </div>
+                    <br />
+                    <div className="form-group  col-md-4">
+                        <div>S等级2名称</div>
+                        <input onChange={handleChange} name="SRank2_name" value={input.SRank2_name} autoComplete="off" className="form-control" placeholder="S等级2名称" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>S等级3名称</div>
+                        <input onChange={handleChange} name="SRank3_name" value={input.SRank3_name} autoComplete="off" className="form-control" placeholder="S等级3名称" />
+                    </div>
                 </div>
                 <br />
-                <div className="form-group  col-md-4">
-                    <div>S等级2名称</div>
-                    <input onChange={handleChange} name="SRank2_name" value={input.SRank2_name} autoComplete="off" className="form-control" placeholder="S等级2名称" />
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <div>S等级1头像</div>
+                        <input onChange={handleChange} name="SRank1_avatar" value={input.SRank1_avatar} autoComplete="off" className="form-control" placeholder="S等级1头像" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>S等级2头像</div>
+                        <input onChange={handleChange} name="SRank2_avatar" value={input.SRank2_avatar} autoComplete="off" className="form-control" placeholder="S等级2头像" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>S等级3头像</div>
+                        <input onChange={handleChange} name="SRank3_avatar" value={input.SRank3_avatar} autoComplete="off" className="form-control" placeholder="S等级3头像" />
+                    </div>
+                </div>
+                <br />
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <div>M等级1名称</div>
+                        <input onChange={handleChange} name="MRank1_name" value={input.MRank1_name} autoComplete="off" className="form-control" placeholder="M等级1名称" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>M等级2名称</div>
+                        <input onChange={handleChange} name="MRank2_name" value={input.MRank2_name} autoComplete="off" className="form-control" placeholder="M等级2名称" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>M等级3名称</div>
+                        <input onChange={handleChange} name="MRank3_name" value={input.MRank3_name} autoComplete="off" className="form-control" placeholder="M等级3名称" />
+                    </div>
+                </div>
+                <br />
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <div>M等级1头像</div>
+                        <input onChange={handleChange} name="MRank1_avatar" value={input.MRank1_avatar} autoComplete="off" className="form-control" placeholder="M等级1头像" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>M等级2头像</div>
+                        <input onChange={handleChange} name="MRank2_avatar" value={input.MRank2_avatar} autoComplete="off" className="form-control" placeholder="M等级2头像" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>M等级3头像</div>
+                        <input onChange={handleChange} name="MRank3_avatar" value={input.MRank3_avatar} autoComplete="off" className="form-control" placeholder="M等级3头像" />
+                    </div>
+                </div>
+                <br />
+                <div className="form-row">
+                    <div className="form-group col-md-4">
+                        <div>M1</div>
+                        <input onChange={handleChange} name="M1" value={input.M1} autoComplete="off" className="form-control" placeholder="M1" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>M2</div>
+                        <input onChange={handleChange} name="M2" value={input.M2} autoComplete="off" className="form-control" placeholder="M2" />
+                    </div>
+                    <br />
+                    <div className="form-group col-md-4">
+                        <div>M3</div>
+                        <input onChange={handleChange} name="M3" value={input.M3} autoComplete="off" className="form-control" placeholder="M3" />
+                    </div>
                 </div>
                 <br />
                 <div className="form-group col-md-4">
-                    <div>S等级3名称</div>
-                    <input onChange={handleChange} name="SRank3_name" value={input.SRank3_name} autoComplete="off" className="form-control" placeholder="S等级3名称" />
+                    <div>满意度</div>
+                    <input
+                        onChange={handleChange}
+                        name="Satisfaction"
+                        value={input.Satisfaction}
+                        autoComplete="off"
+                        className="form-control"
+                        placeholder="满意度"
+                    />
                 </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>S等级1头像</div>
-                    <input onChange={handleChange} name="SRank1_avatar" value={input.SRank1_avatar} autoComplete="off" className="form-control" placeholder="S等级1头像" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>S等级2头像</div>
-                    <input onChange={handleChange} name="SRank2_avatar" value={input.SRank2_avatar} autoComplete="off" className="form-control" placeholder="S等级2头像" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>S等级3头像</div>
-                    <input onChange={handleChange} name="SRank3_avatar" value={input.SRank3_avatar} autoComplete="off" className="form-control" placeholder="S等级3头像" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M等级1名称</div>
-                    <input onChange={handleChange} name="MRank1_name" value={input.MRank1_name} autoComplete="off" className="form-control" placeholder="M等级1名称" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M等级2名称</div>
-                    <input onChange={handleChange} name="MRank2_name" value={input.MRank2_name} autoComplete="off" className="form-control" placeholder="M等级2名称" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M等级3名称</div>
-                    <input onChange={handleChange} name="MRank3_name" value={input.MRank3_name} autoComplete="off" className="form-control" placeholder="M等级3名称" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M等级1头像</div>
-                    <input onChange={handleChange} name="MRank1_avatar" value={input.MRank1_avatar} autoComplete="off" className="form-control" placeholder="M等级1头像" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M等级2头像</div>
-                    <input onChange={handleChange} name="MRank2_avatar" value={input.MRank2_avatar} autoComplete="off" className="form-control" placeholder="M等级2头像" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M等级3头像</div>
-                    <input onChange={handleChange} name="MRank3_avatar" value={input.MRank3_avatar} autoComplete="off" className="form-control" placeholder="M等级3头像" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M1</div>
-                    <input onChange={handleChange} name="M1" value={input.M1} autoComplete="off" className="form-control" placeholder="M1" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M2</div>
-                    <input onChange={handleChange} name="M2" value={input.M2} autoComplete="off" className="form-control" placeholder="M2" />
-                </div>
-                <br />
-                <div className="form-group col-md-4">
-                    <div>M3</div>
-                    <input onChange={handleChange} name="M3" value={input.M3} autoComplete="off" className="form-control" placeholder="M3" />
-                </div>
+
                 <br />
                 <button onClick={handleClick} className="btn btn-lg btn-info">添加云服务</button>
             </form>

@@ -31,6 +31,7 @@ function EditCloud({ cloud, onClose }) {
                     alert("数据已更新");
                     onClose();
                     window.location.reload();
+                    window.location.href = "http://localhost:3000/cloud";
                 } else {
                     console.error("更新失败");
                 }
@@ -240,7 +241,7 @@ function EditCloud({ cloud, onClose }) {
                 <br />
 
                 <div className="form-group">
-                    <label htmlFor="title" className="form-group">M1</label>
+                    <label htmlFor="title" className="form-group">库存总数</label>
                     <input
                         type="text"
                         name="M1"
@@ -252,7 +253,7 @@ function EditCloud({ cloud, onClose }) {
                 </div>
                 <br />
                 <div className="form-group">
-                    <label htmlFor="title" className="form-group">M2</label>
+                    <label htmlFor="title" className="form-group">本月收购</label>
                     <input
                         type="text"
                         name="M2"
@@ -265,13 +266,25 @@ function EditCloud({ cloud, onClose }) {
                 <br />
 
                 <div className="form-group">
-                    <label htmlFor="title" className="form-group">M3</label>
+                    <label htmlFor="title" className="form-group">本月销售</label>
                     <input
                         type="text"
                         name="M3"
                         autoComplete="off"
                         className="form-control"
                         value={editedCloud.M3}
+                        onChange={handleChange}
+                    />
+                </div>
+                <br />
+                <div className="form-group">
+                    <label htmlFor="title" className="form-group">满意度</label>
+                    <input
+                        type="text"
+                        name="Satisfaction"
+                        autoComplete="off"
+                        className="form-control"
+                        value={editedCloud.Satisfaction}
                         onChange={handleChange}
                     />
                 </div>
