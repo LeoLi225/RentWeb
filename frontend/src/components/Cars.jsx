@@ -485,10 +485,28 @@ function Cars() {
     );
   }
 
+  const [showButton, setShowButton] = useState(true);
+
+  const requestFullscreen = () => {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // 兼容 Firefox
+      document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // 兼容 Chrome, Safari 和 Opera
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // 兼容 Edge
+      document.documentElement.msRequestFullscreen();
+    }
+
+    // 点击按钮后隐藏按钮
+    setShowButton(false);
+  };
+
 
   return (
-    <>
-      <div className="grid-all">
+    <div>
+      {showButton && <button onClick={requestFullscreen}>全屏展示</button>}
+      <p className="grid-all">
         <div className="grid-top">
           <div className="title">MOTORONE壹站云海系统</div>
           <div className="clock">
@@ -600,7 +618,7 @@ function Cars() {
                 </>
               ))}
             </div>
-            <div className="M2" style={{ backgroundImage: `url(/vancouver.webp)`, backgroundSize: '100% auto', backgroundRepeat: 'no-repeat' }}>
+            <div className="M2" >
               <div className="blinking-dot"></div>
             </div>
             <div className="M3">
@@ -682,8 +700,8 @@ function Cars() {
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </p>
+    </div>
   );
 
 }
